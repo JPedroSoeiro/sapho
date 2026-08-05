@@ -1,4 +1,4 @@
-import { HelicopterPart } from '@/types/part';
+﻿import { HelicopterPart } from '@/types/part';
 
 export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
   // ============================================
@@ -6,9 +6,10 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
   // ============================================
   {
     id: 'part-001',
-    name: 'Pá do Rotor Principal (Pala)',
+    name: 'PÃ¡ do Rotor Principal (Pala)',
     serialNumber: 'PR-PAL-8829-A',
     category: 'Rotor Principal',
+    aircraftId: 'ac-001',
     installDate: new Date('2023-06-15'),
     maxLifespanDays: 1460, // 4 anos
     currentFlightHours: 1250,
@@ -19,9 +20,10 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
   },
   {
     id: 'part-002',
-    name: 'Pá do Rotor Principal (Pala)',
+    name: 'PÃ¡ do Rotor Principal (Pala)',
     serialNumber: 'PR-PAL-8830-B',
     category: 'Rotor Principal',
+    aircraftId: 'ac-001',
     installDate: new Date('2023-06-15'),
     maxLifespanDays: 1460,
     currentFlightHours: 1280,
@@ -35,6 +37,7 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
     name: 'Cubo do Rotor (Hub)',
     serialNumber: 'RT-HUB-1204-C',
     category: 'Rotor Principal',
+    aircraftId: 'ac-001',
     installDate: new Date('2022-03-20'),
     maxLifespanDays: 2555, // 7 anos
     currentFlightHours: 2840,
@@ -48,6 +51,7 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
     name: 'Mastro do Rotor (Eje del Rotor)',
     serialNumber: 'RT-MST-5601-D',
     category: 'Rotor Principal',
+    aircraftId: 'ac-001',
     installDate: new Date('2020-11-10'),
     maxLifespanDays: 2920, // 8 anos
     currentFlightHours: 4120,
@@ -61,6 +65,7 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
     name: 'Prato Oscilante (Swashplate)',
     serialNumber: 'SW-SWP-1049-C',
     category: 'Rotor Principal',
+    aircraftId: 'ac-001',
     installDate: new Date('2024-01-08'),
     maxLifespanDays: 730, // 2 anos
     currentFlightHours: 480,
@@ -71,9 +76,10 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
   },
   {
     id: 'part-006',
-    name: 'Haste de Controle do Ângulo de Ataque',
+    name: 'Haste de Controle do Ã‚ngulo de Ataque',
     serialNumber: 'CT-HST-3301-B',
     category: 'Rotor Principal',
+    aircraftId: 'ac-001',
     installDate: new Date('2024-02-15'),
     maxLifespanDays: 1000,
     currentFlightHours: 620,
@@ -84,9 +90,10 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
   },
   {
     id: 'part-007',
-    name: 'Dobradiças de Batimento (Bisagras)',
+    name: 'DobradiÃ§as de Batimento (Bisagras)',
     serialNumber: 'RT-DOB-7744-E',
     category: 'Rotor Principal',
+    aircraftId: 'ac-001',
     installDate: new Date('2023-08-22'),
     maxLifespanDays: 1095, // 3 anos
     currentFlightHours: 1180,
@@ -97,9 +104,10 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
   },
   {
     id: 'part-008',
-    name: 'Barra de Estabilização (Barra Estabilizadora)',
+    name: 'Barra de EstabilizaÃ§Ã£o (Barra Estabilizadora)',
     serialNumber: 'ST-BAR-2208-F',
     category: 'Rotor Principal',
+    aircraftId: 'ac-001',
     installDate: new Date('2024-04-10'),
     maxLifespanDays: 1825, // 5 anos
     currentFlightHours: 340,
@@ -110,13 +118,13 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
   },
 
   // ============================================
-  // MOTOR E TRANSMISSÃO
+  // MOTOR E TRANSMISSÃƒO
   // ============================================
   {
     id: 'part-009',
     name: 'Turbina / Motor Principal',
     serialNumber: 'ENG-TRB-9901-X',
-    category: 'Motorização',
+    category: 'MotorizaÃ§Ã£o',
     installDate: new Date('2023-02-01'),
     maxLifespanDays: 2555, // 7 anos
     currentFlightHours: 1890,
@@ -129,7 +137,8 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
     id: 'part-010',
     name: 'Carenagem do Motor',
     serialNumber: 'ENG-CAR-4412-G',
-    category: 'Motorização',
+    category: 'MotorizaÃ§Ã£o',
+    aircraftId: 'ac-001',
     installDate: new Date('2024-05-18'),
     maxLifespanDays: 1460, // 4 anos
     currentFlightHours: 280,
@@ -140,9 +149,10 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
   },
   {
     id: 'part-011',
-    name: 'Caixa de Transmissão Principal',
+    name: 'Caixa de TransmissÃ£o Principal',
     serialNumber: 'TR-GBX-1156-H',
-    category: 'Transmissão',
+    category: 'TransmissÃ£o',
+    aircraftId: 'ac-001',
     installDate: new Date('2021-09-12'),
     maxLifespanDays: 2555, // 7 anos
     currentFlightHours: 3420,
@@ -153,9 +163,10 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
   },
   {
     id: 'part-012',
-    name: 'Óleo Hidráulico / Sistema Hidráulico',
+    name: 'Ã“leo HidrÃ¡ulico / Sistema HidrÃ¡ulico',
     serialNumber: 'HYD-OLE-7890-I',
-    category: 'Sistemas Hidráulicos',
+    category: 'Sistemas HidrÃ¡ulicos',
+    aircraftId: 'ac-001',
     installDate: new Date('2024-07-01'),
     maxLifespanDays: 180, // 6 meses
     currentFlightHours: 120,
@@ -166,13 +177,14 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
   },
 
   // ============================================
-  // ROTOR DE CAUDA E TRANSMISSÃO
+  // ROTOR DE CAUDA E TRANSMISSÃƒO
   // ============================================
   {
     id: 'part-013',
-    name: 'Eixo de Transmissão do Rotor de Cauda',
+    name: 'Eixo de TransmissÃ£o do Rotor de Cauda',
     serialNumber: 'TR-EIX-2256-J',
-    category: 'Transmissão e Cauda',
+    category: 'TransmissÃ£o e Cauda',
+    aircraftId: 'ac-002',
     installDate: new Date('2022-11-25'),
     maxLifespanDays: 1825, // 5 anos
     currentFlightHours: 2650,
@@ -183,9 +195,10 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
   },
   {
     id: 'part-014',
-    name: 'Caixa de Transmissão 45° (Rotor de Cauda)',
+    name: 'Caixa de TransmissÃ£o 45Â° (Rotor de Cauda)',
     serialNumber: 'TR-45-3367-K',
-    category: 'Transmissão e Cauda',
+    category: 'TransmissÃ£o e Cauda',
+    aircraftId: 'ac-002',
     installDate: new Date('2023-07-08'),
     maxLifespanDays: 1095, // 3 anos
     currentFlightHours: 1720,
@@ -196,9 +209,10 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
   },
   {
     id: 'part-015',
-    name: 'Caixa de Transmissão 90° (Rotor de Cauda)',
+    name: 'Caixa de TransmissÃ£o 90Â° (Rotor de Cauda)',
     serialNumber: 'TR-90-4412-L',
-    category: 'Transmissão e Cauda',
+    category: 'TransmissÃ£o e Cauda',
+    aircraftId: 'ac-002',
     installDate: new Date('2023-02-01'),
     maxLifespanDays: 1095, // 3 anos
     currentFlightHours: 2180,
@@ -211,7 +225,8 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
     id: 'part-016',
     name: 'Rotor de Cauda (Rotor Antipar)',
     serialNumber: 'TC-ROT-5523-M',
-    category: 'Transmissão e Cauda',
+    category: 'TransmissÃ£o e Cauda',
+    aircraftId: 'ac-002',
     installDate: new Date('2024-03-14'),
     maxLifespanDays: 1825, // 5 anos
     currentFlightHours: 560,
@@ -222,9 +237,10 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
   },
   {
     id: 'part-017',
-    name: 'Pá do Rotor de Cauda',
+    name: 'PÃ¡ do Rotor de Cauda',
     serialNumber: 'TC-PAL-6634-N',
-    category: 'Transmissão e Cauda',
+    category: 'TransmissÃ£o e Cauda',
+    aircraftId: 'ac-002',
     installDate: new Date('2023-10-20'),
     maxLifespanDays: 1460, // 4 anos
     currentFlightHours: 1340,
@@ -268,6 +284,7 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
     name: 'Estabilizador Horizontal',
     serialNumber: 'TC-EST-9967-Q',
     category: 'Cauda e Fuselagem',
+    aircraftId: 'ac-002',
     installDate: new Date('2024-01-22'),
     maxLifespanDays: 1825, // 5 anos
     currentFlightHours: 420,
@@ -278,9 +295,10 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
   },
   {
     id: 'part-021',
-    name: 'Patim de Proteção da Cauda (Patín de Cauda)',
+    name: 'Patim de ProteÃ§Ã£o da Cauda (PatÃ­n de Cauda)',
     serialNumber: 'TC-PAT-1078-R',
     category: 'Cauda e Fuselagem',
+    aircraftId: 'ac-002',
     installDate: new Date('2023-09-11'),
     maxLifespanDays: 730, // 2 anos
     currentFlightHours: 1150,
@@ -298,6 +316,7 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
     name: 'Fuselagem Principal',
     serialNumber: 'FUS-MAIN-2189-S',
     category: 'Fuselagem',
+    aircraftId: 'ac-003',
     installDate: new Date('2020-06-15'),
     maxLifespanDays: 3650, // 10 anos
     currentFlightHours: 5200,
@@ -311,6 +330,7 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
     name: 'Cabine de Comando (Cockpit)',
     serialNumber: 'FUS-CAB-3300-T',
     category: 'Fuselagem',
+    aircraftId: 'ac-003',
     installDate: new Date('2023-04-18'),
     maxLifespanDays: 2555, // 7 anos
     currentFlightHours: 1680,
@@ -324,6 +344,7 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
     name: 'Portas da Cabine',
     serialNumber: 'FUS-PRT-4411-U',
     category: 'Fuselagem',
+    aircraftId: 'ac-003',
     installDate: new Date('2024-02-28'),
     maxLifespanDays: 1825, // 5 anos
     currentFlightHours: 340,
@@ -341,6 +362,7 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
     name: 'Patins de Aterragem (Trem de Pouso)',
     serialNumber: 'LG-PAT-5522-V',
     category: 'Trem de Pouso',
+    aircraftId: 'ac-003',
     installDate: new Date('2023-08-05'),
     maxLifespanDays: 1460, // 4 anos
     currentFlightHours: 1520,
@@ -354,6 +376,7 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
     name: 'Amortecedor do Trem de Pouso',
     serialNumber: 'LG-AMS-6633-W',
     category: 'Trem de Pouso',
+    aircraftId: 'ac-003',
     installDate: new Date('2024-06-12'),
     maxLifespanDays: 1095, // 3 anos
     currentFlightHours: 280,
@@ -371,6 +394,7 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
     name: 'Pedal do Leme (Anti-torque Pedals)',
     serialNumber: 'CT-PED-7744-X',
     category: 'Controles de Voo',
+    aircraftId: 'ac-004',
     installDate: new Date('2023-11-14'),
     maxLifespanDays: 1825, // 5 anos
     currentFlightHours: 1080,
@@ -384,6 +408,7 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
     name: 'Conjunto de Cabos de Comando',
     serialNumber: 'CT-CBL-8855-Y',
     category: 'Controles de Voo',
+    aircraftId: 'ac-004',
     installDate: new Date('2024-03-20'),
     maxLifespanDays: 730, // 2 anos
     currentFlightHours: 520,
@@ -394,13 +419,13 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
   },
 
   // ============================================
-  // SISTEMA ELÉTRICO E AVIÔNICOS
+  // SISTEMA ELÃ‰TRICO E AVIÃ”NICOS
   // ============================================
   {
     id: 'part-029',
     name: 'Bateria Principal (28V DC)',
     serialNumber: 'BAT-MAIN-9966-Z',
-    category: 'Elétrico',
+    category: 'ElÃ©trico',
     installDate: new Date('2024-04-05'),
     maxLifespanDays: 730, // 2 anos
     currentFlightHours: 380,
@@ -413,7 +438,8 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
     id: 'part-030',
     name: 'Alternador Principal',
     serialNumber: 'ALT-MAIN-1107-AA',
-    category: 'Elétrico',
+    category: 'ElÃ©trico',
+    aircraftId: 'ac-004',
     installDate: new Date('2023-07-10'),
     maxLifespanDays: 1825, // 5 anos
     currentFlightHours: 1450,
@@ -424,9 +450,10 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
   },
   {
     id: 'part-031',
-    name: 'Giroscópio / Sistema de Navegação Inercial',
+    name: 'GiroscÃ³pio / Sistema de NavegaÃ§Ã£o Inercial',
     serialNumber: 'AVN-GYR-2218-AB',
-    category: 'Aviônicos',
+    category: 'AviÃ´nicos',
+    aircraftId: 'ac-004',
     installDate: new Date('2023-01-30'),
     maxLifespanDays: 2555, // 7 anos
     currentFlightHours: 2240,
@@ -437,13 +464,14 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
   },
 
   // ============================================
-  // COMPONENTES MENORES E CONSUMÍVEIS
+  // COMPONENTES MENORES E CONSUMÃVEIS
   // ============================================
   {
     id: 'part-032',
     name: 'Filtro de Ar do Motor',
     serialNumber: 'FLT-AIR-3329-AC',
-    category: 'Filtros e Consumíveis',
+    category: 'Filtros e ConsumÃ­veis',
+    aircraftId: 'ac-005',
     installDate: new Date('2024-07-15'),
     maxLifespanDays: 180, // 6 meses
     currentFlightHours: 85,
@@ -454,9 +482,10 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
   },
   {
     id: 'part-033',
-    name: 'Filtro Hidráulico',
+    name: 'Filtro HidrÃ¡ulico',
     serialNumber: 'FLT-HYD-4440-AD',
-    category: 'Filtros e Consumíveis',
+    category: 'Filtros e ConsumÃ­veis',
+    aircraftId: 'ac-005',
     installDate: new Date('2024-06-20'),
     maxLifespanDays: 365, // 1 ano
     currentFlightHours: 320,
@@ -467,9 +496,10 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
   },
   {
     id: 'part-034',
-    name: 'Parafusos de Fixação (Kit 1000 unidades)',
+    name: 'Parafusos de FixaÃ§Ã£o (Kit 1000 unidades)',
     serialNumber: 'HW-BLT-5551-AE',
     category: 'Hardware',
+    aircraftId: 'ac-005',
     installDate: new Date('2024-05-10'),
     maxLifespanDays: 730, // 2 anos
     currentFlightHours: 450,
@@ -480,9 +510,10 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
   },
   {
     id: 'part-035',
-    name: 'Vedações e O-rings (Kit Sortido)',
+    name: 'VedaÃ§Ãµes e O-rings (Kit Sortido)',
     serialNumber: 'HW-SEAL-6662-AF',
     category: 'Hardware',
+    aircraftId: 'ac-005',
     installDate: new Date('2024-04-01'),
     maxLifespanDays: 365, // 1 ano
     currentFlightHours: 220,
@@ -492,3 +523,4 @@ export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
     updatedAt: new Date('2024-08-04'),
   },
 ];
+

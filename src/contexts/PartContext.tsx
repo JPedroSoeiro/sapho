@@ -15,6 +15,7 @@ interface PartContextType {
   filterByStatus: (status: PartStatus) => Promise<void>;
   filterByCategory: (category: string) => Promise<void>;
   searchParts: (query: string) => HelicopterPart[];
+  getPartsByAircraft: (aircraftId: string) => HelicopterPart[];
 }
 
 const PartContext = createContext<PartContextType | undefined>(undefined);
@@ -113,6 +114,10 @@ export function PartProvider({ children }: { children: React.ReactNode }) {
     [parts]
   );
 
+  const getPartsByAircraft = useCallback((aircraftId: string): HelicopterPart[] => {
+    return parts.filter((part) => part.aircraftId === aircraftId);
+  }, [parts]);
+
   // Carregar peças ao montar o componente
   useEffect(() => {
     fetchParts();
@@ -131,6 +136,7 @@ export function PartProvider({ children }: { children: React.ReactNode }) {
         filterByStatus,
         filterByCategory,
         searchParts,
+        getPartsByAircraft,
       }}
     >
       {children}

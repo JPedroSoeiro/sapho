@@ -13,6 +13,7 @@ export interface HelicopterPart {
   name: string;
   serialNumber: string;
   category: string;
+  aircraftId: string; // Referência ao helicóptero
   installDate: Date;
   maxLifespanDays: number;
   currentFlightHours: number;
