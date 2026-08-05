@@ -48,7 +48,19 @@ export default function InventoryDetailPage() {
   };
 
   const handleFormSubmit = async (partData: Omit<HelicopterPart, 'id' | 'createdAt' | 'updatedAt'>) => {
-    console.log('Form submission disabled - no action taken');
+    setIsSubmitting(true);
+    try {
+      if (selectedPart) {
+        await updatePart(selectedPart.id, partData);
+      } else {
+        await addPart(partData);
+      }
+      handleCloseForm();
+    } catch (error) {
+      console.error('Erro ao salvar peça:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleDeleteClick = (part: HelicopterPart) => {
@@ -57,7 +69,18 @@ export default function InventoryDetailPage() {
   };
 
   const handleConfirmDelete = async () => {
-    console.log('Delete action disabled - no action taken');
+    setIsSubmitting(true);
+    try {
+      if (partToDelete) {
+        await deletePart(partToDelete.id);
+        setIsDeleteModalOpen(false);
+        setPartToDelete(undefined);
+      }
+    } catch (error) {
+      console.error('Erro ao deletar peça:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!mounted) {

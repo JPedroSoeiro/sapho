@@ -60,8 +60,28 @@ export function PartForm({ part, aircraftId = '', onSubmit, loading = false }: P
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Lógica de submissão desabilitada
-    console.log('Form submission disabled');
+
+    if (!validateForm()) return;
+
+    try {
+      await onSubmit(formData);
+      if (!part) {
+        setFormData({
+          aircraftId,
+          name: '',
+          serialNumber: '',
+          category: '',
+          installDate: new Date(),
+          maxLifespanDays: 3650,
+          currentFlightHours: 0,
+          maxFlightHoursTBO: 5000,
+          status: 'OK',
+        });
+      }
+      setErrors({});
+    } catch (error) {
+      console.error('Erro ao submeter formulário:', error);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
