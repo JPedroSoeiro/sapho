@@ -1,4 +1,4 @@
-import { Aircraft } from '@/types/aircraft';
+﻿import { Aircraft } from '@/types/aircraft';
 
 export const INITIAL_AIRCRAFT_MOCK: Aircraft[] = [
   {
