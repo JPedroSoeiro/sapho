@@ -1,414 +1,70 @@
 import { HelicopterPart } from '@/types/part';
+import { AIRCRAFT_COMPONENTS } from './realAircraftComponents';
 
-// Dados realistas de peças para a frota SAPHO
+// Map aircraft IDs to their component types
+const AIRCRAFT_MODEL_MAP: Record<string, keyof typeof AIRCRAFT_COMPONENTS> = {
+  'ac-001': 'AS350-B2', // PT-HBM
+  'ac-002': 'AS350-B2', // PT-HBN
+  'ac-003': 'EC130-B4', // PT-HBO
+  'ac-004': 'EC135-P2+', // PT-HBP
+  'ac-005': 'H135',     // PT-HBQ
+  'ac-006': 'H135',     // PT-HBR
+  'ac-007': 'EC145-C2', // PT-HBS
+  'ac-008': 'EC145-C2', // PT-HBT
+  'ac-009': 'EC145-C2', // PT-HBU
+};
 
-const generatePart = (
-  id: string,
-  name: string,
-  serialPrefix: string,
-  aircraftId: string,
-  category: string,
-  tbo: number,
-  maxDays: number,
-  statusOverride?: string
-): HelicopterPart => ({
-  id,
-  name,
-  serialNumber: `${serialPrefix}-${aircraftId.substring(3).toUpperCase()}`,
-  aircraftId,
-  category,
-  installDate: new Date(Date.now() - Math.random() * 126230400000), // Aleatório entre 0-4 anos
-  maxLifespanDays: maxDays,
-  currentFlightHours: Math.floor(Math.random() * (tbo * 0.9)),
-  maxFlightHoursTBO: tbo,
-  status: statusOverride || (Math.random() > 0.85 ? 'OK' : Math.random() > 0.5 ? 'WARNING' : 'OK') as any,
-  createdAt: new Date(),
-  updatedAt: new Date(),
-  notes: `Peça crítica para ${name}`,
-});
+// Generate parts from real aircraft components
+function generatePartsFromComponents(): HelicopterPart[] {
+  const parts: HelicopterPart[] = [];
+  let partCounter = 1;
 
-export const INITIAL_PARTS_MOCK: HelicopterPart[] = [
-  // ============================================
-  // AS350 B2 - MONOTURBINA
-  // ============================================
+  for (const [aircraftId, modelKey] of Object.entries(AIRCRAFT_MODEL_MAP)) {
+    const model = AIRCRAFT_COMPONENTS[modelKey];
 
-  // AC-001: AS350 B2 - 01 (PT-HBM)
-  {
-    id: 'part-as350-001-001',
-    name: 'Motor Turbomeca Arriel 1D2',
-    serialNumber: 'ARR-1D2-HBM',
-    aircraftId: 'ac-001',
-    category: 'Motor',
-    installDate: new Date('2021-03-15'),
-    maxLifespanDays: 2555,
-    currentFlightHours: 1850,
-    maxFlightHoursTBO: 2400,
-    status: 'OK',
-    createdAt: new Date('2021-03-15'),
-    updatedAt: new Date('2024-08-04'),
-  },
-  {
-    id: 'part-as350-001-002',
-    name: 'Pá do Rotor Principal AS350',
-    serialNumber: 'PAL-AS350-HBM',
-    aircraftId: 'ac-001',
-    category: 'Rotor Principal',
-    installDate: new Date('2019-06-20'),
-    maxLifespanDays: 3650,
-    currentFlightHours: 2100,
-    maxFlightHoursTBO: 3000,
-    status: 'OK',
-    createdAt: new Date('2019-06-20'),
-    updatedAt: new Date('2024-08-04'),
-  },
-  {
-    id: 'part-as350-001-003',
-    name: 'Caixa de Transmissão Principal AS350',
-    serialNumber: 'GBX-AS350-HBM',
-    aircraftId: 'ac-001',
-    category: 'Transmissão',
-    installDate: new Date('2020-11-10'),
-    maxLifespanDays: 4380,
-    currentFlightHours: 3200,
-    maxFlightHoursTBO: 3500,
-    status: 'WARNING',
-    createdAt: new Date('2020-11-10'),
-    updatedAt: new Date('2024-08-04'),
-  },
-  {
-    id: 'part-as350-001-004',
-    name: 'Rotor Fenestron AS350',
-    serialNumber: 'FEN-AS350-HBM',
-    aircraftId: 'ac-001',
-    category: 'Rotor de Cauda',
-    installDate: new Date('2021-08-05'),
-    maxLifespanDays: 3650,
-    currentFlightHours: 1650,
-    maxFlightHoursTBO: 2500,
-    status: 'OK',
-    createdAt: new Date('2021-08-05'),
-    updatedAt: new Date('2024-08-04'),
-  },
-  {
-    id: 'part-as350-001-005',
-    name: 'Bomba Hidráulica Principal',
-    serialNumber: 'PUMP-HYD-HBM',
-    aircraftId: 'ac-001',
-    category: 'Sistema Hidráulico',
-    installDate: new Date('2022-01-20'),
-    maxLifespanDays: 3650,
-    currentFlightHours: 1200,
-    maxFlightHoursTBO: 3000,
-    status: 'OK',
-    createdAt: new Date('2022-01-20'),
-    updatedAt: new Date('2024-08-04'),
-  },
+    model.components.forEach((component, index) => {
+      const partId = `part-${aircraftId.substring(3)}-${String(index + 1).padStart(3, '0')}`;
 
-  // AC-002: AS350 B2 - 02 (PT-HBN)
-  {
-    id: 'part-as350-002-001',
-    name: 'Motor Turbomeca Arriel 1D2',
-    serialNumber: 'ARR-1D2-HBN',
-    aircraftId: 'ac-002',
-    category: 'Motor',
-    installDate: new Date('2022-05-10'),
-    maxLifespanDays: 2555,
-    currentFlightHours: 980,
-    maxFlightHoursTBO: 2400,
-    status: 'OK',
-    createdAt: new Date('2022-05-10'),
-    updatedAt: new Date('2024-08-04'),
-  },
-  {
-    id: 'part-as350-002-002',
-    name: 'Pá do Rotor Principal AS350',
-    serialNumber: 'PAL-AS350-HBN',
-    aircraftId: 'ac-002',
-    category: 'Rotor Principal',
-    installDate: new Date('2020-09-15'),
-    maxLifespanDays: 3650,
-    currentFlightHours: 1450,
-    maxFlightHoursTBO: 3000,
-    status: 'OK',
-    createdAt: new Date('2020-09-15'),
-    updatedAt: new Date('2024-08-04'),
-  },
+      // Generate realistic install dates (between 6 months and 4 years ago)
+      const daysAgo = Math.floor(Math.random() * (4 * 365 - 180) + 180);
+      const installDate = new Date(Date.now() - daysAgo * 24 * 60 * 60 * 1000);
 
-  // ============================================
-  // EC130 B4 - MONOTURBINA
-  // ============================================
+      // Generate flight hours based on component TBO usage
+      const maxUsagePercent = Math.random() * 0.95; // 0-95% usage
+      const currentFlightHours = Math.floor(component.tbo * maxUsagePercent);
 
-  // AC-003: EC130 B4 (PT-HBO)
-  {
-    id: 'part-ec130-001-001',
-    name: 'Motor Turbomeca Arriel 2B',
-    serialNumber: 'ARR-2B-HBO',
-    aircraftId: 'ac-003',
-    category: 'Motor',
-    installDate: new Date('2021-11-20'),
-    maxLifespanDays: 2555,
-    currentFlightHours: 1650,
-    maxFlightHoursTBO: 2400,
-    status: 'OK',
-    createdAt: new Date('2021-11-20'),
-    updatedAt: new Date('2024-08-04'),
-  },
-  {
-    id: 'part-ec130-001-002',
-    name: 'Caixa de Transmissão Principal EC130',
-    serialNumber: 'GBX-EC130-HBO',
-    aircraftId: 'ac-003',
-    category: 'Transmissão',
-    installDate: new Date('2020-03-10'),
-    maxLifespanDays: 4380,
-    currentFlightHours: 2200,
-    maxFlightHoursTBO: 3500,
-    status: 'OK',
-    createdAt: new Date('2020-03-10'),
-    updatedAt: new Date('2024-08-04'),
-  },
+      // Determine status based on usage
+      let status: 'OK' | 'WARNING' | 'CRITICAL_AOG' = 'OK';
+      const usagePercent = (currentFlightHours / component.tbo) * 100;
 
-  // ============================================
-  // EC135 P2+ / H135 - BITURBINA (2 MOTORES)
-  // ============================================
+      if (usagePercent > 100) {
+        status = 'CRITICAL_AOG';
+      } else if (usagePercent > 80) {
+        status = 'WARNING';
+      }
 
-  // AC-004: EC135 P2+ (PT-HBP)
-  {
-    id: 'part-ec135-001-001',
-    name: 'Motor Turbomeca Arriel 1P2 (Port)',
-    serialNumber: 'ARR-1P2-L-HBP',
-    aircraftId: 'ac-004',
-    category: 'Motor',
-    installDate: new Date('2020-08-12'),
-    maxLifespanDays: 3650,
-    currentFlightHours: 2850,
-    maxFlightHoursTBO: 3000,
-    status: 'WARNING',
-    createdAt: new Date('2020-08-12'),
-    updatedAt: new Date('2024-08-04'),
-  },
-  {
-    id: 'part-ec135-001-002',
-    name: 'Motor Turbomeca Arriel 1P2 (Starboard)',
-    serialNumber: 'ARR-1P2-R-HBP',
-    aircraftId: 'ac-004',
-    category: 'Motor',
-    installDate: new Date('2020-08-12'),
-    maxLifespanDays: 3650,
-    currentFlightHours: 2920,
-    maxFlightHoursTBO: 3000,
-    status: 'WARNING',
-    createdAt: new Date('2020-08-12'),
-    updatedAt: new Date('2024-08-04'),
-  },
-  {
-    id: 'part-ec135-001-003',
-    name: 'Caixa de Transmissão Principal EC135',
-    serialNumber: 'GBX-EC135-HBP',
-    aircraftId: 'ac-004',
-    category: 'Transmissão',
-    installDate: new Date('2019-05-20'),
-    maxLifespanDays: 4745,
-    currentFlightHours: 3100,
-    maxFlightHoursTBO: 4000,
-    status: 'OK',
-    createdAt: new Date('2019-05-20'),
-    updatedAt: new Date('2024-08-04'),
-  },
-  {
-    id: 'part-ec135-001-004',
-    name: 'Rotor Fenestron EC135',
-    serialNumber: 'FEN-EC135-HBP',
-    aircraftId: 'ac-004',
-    category: 'Rotor de Cauda',
-    installDate: new Date('2021-02-14'),
-    maxLifespanDays: 3650,
-    currentFlightHours: 1800,
-    maxFlightHoursTBO: 3000,
-    status: 'OK',
-    createdAt: new Date('2021-02-14'),
-    updatedAt: new Date('2024-08-04'),
-  },
+      const part: HelicopterPart = {
+        id: partId,
+        name: component.name,
+        serialNumber: `${component.name.substring(0, 3).toUpperCase()}-${aircraftId.substring(3).toUpperCase()}-${String(partCounter).padStart(4, '0')}`,
+        aircraftId,
+        category: component.category,
+        installDate,
+        maxLifespanDays: component.maxDays,
+        currentFlightHours,
+        maxFlightHoursTBO: component.tbo,
+        status,
+        createdAt: installDate,
+        updatedAt: new Date(),
+        notes: `${model.model} - ${component.category}`,
+      };
 
-  // AC-005: H135 - 01 (PT-HBQ)
-  {
-    id: 'part-h135-001-001',
-    name: 'Motor Turbomeca Arriel 2P (Port)',
-    serialNumber: 'ARR-2P-L-HBQ',
-    aircraftId: 'ac-005',
-    category: 'Motor',
-    installDate: new Date('2022-10-25'),
-    maxLifespanDays: 3650,
-    currentFlightHours: 850,
-    maxFlightHoursTBO: 3500,
-    status: 'OK',
-    createdAt: new Date('2022-10-25'),
-    updatedAt: new Date('2024-08-04'),
-  },
-  {
-    id: 'part-h135-001-002',
-    name: 'Motor Turbomeca Arriel 2P (Starboard)',
-    serialNumber: 'ARR-2P-R-HBQ',
-    aircraftId: 'ac-005',
-    category: 'Motor',
-    installDate: new Date('2022-10-25'),
-    maxLifespanDays: 3650,
-    currentFlightHours: 820,
-    maxFlightHoursTBO: 3500,
-    status: 'OK',
-    createdAt: new Date('2022-10-25'),
-    updatedAt: new Date('2024-08-04'),
-  },
+      parts.push(part);
+      partCounter++;
+    });
+  }
 
-  // AC-006: H135 - 02 (PT-HBR)
-  {
-    id: 'part-h135-002-001',
-    name: 'Motor Turbomeca Arriel 2P (Port)',
-    serialNumber: 'ARR-2P-L-HBR',
-    aircraftId: 'ac-006',
-    category: 'Motor',
-    installDate: new Date('2023-04-18'),
-    maxLifespanDays: 3650,
-    currentFlightHours: 680,
-    maxFlightHoursTBO: 3500,
-    status: 'OK',
-    createdAt: new Date('2023-04-18'),
-    updatedAt: new Date('2024-08-04'),
-  },
-  {
-    id: 'part-h135-002-002',
-    name: 'Motor Turbomeca Arriel 2P (Starboard)',
-    serialNumber: 'ARR-2P-R-HBR',
-    aircraftId: 'ac-006',
-    category: 'Motor',
-    installDate: new Date('2023-04-18'),
-    maxLifespanDays: 3650,
-    currentFlightHours: 650,
-    maxFlightHoursTBO: 3500,
-    status: 'OK',
-    createdAt: new Date('2023-04-18'),
-    updatedAt: new Date('2024-08-04'),
-  },
+  return parts;
+}
 
-  // ============================================
-  // EC145 C2 - BITURBINA (2 MOTORES)
-  // ============================================
-
-  // AC-007: EC145 C2 - 01 (PT-HBS)
-  {
-    id: 'part-ec145-001-001',
-    name: 'Motor Turbomeca Arriel 1P2 (Port)',
-    serialNumber: 'ARR-1P2-L-HBS',
-    aircraftId: 'ac-007',
-    category: 'Motor',
-    installDate: new Date('2019-02-10'),
-    maxLifespanDays: 3650,
-    currentFlightHours: 3850,
-    maxFlightHoursTBO: 3000,
-    status: 'CRITICAL_AOG',
-    createdAt: new Date('2019-02-10'),
-    updatedAt: new Date('2024-08-04'),
-  },
-  {
-    id: 'part-ec145-001-002',
-    name: 'Motor Turbomeca Arriel 1P2 (Starboard)',
-    serialNumber: 'ARR-1P2-R-HBS',
-    aircraftId: 'ac-007',
-    category: 'Motor',
-    installDate: new Date('2019-02-10'),
-    maxLifespanDays: 3650,
-    currentFlightHours: 3920,
-    maxFlightHoursTBO: 3000,
-    status: 'CRITICAL_AOG',
-    createdAt: new Date('2019-02-10'),
-    updatedAt: new Date('2024-08-04'),
-  },
-  {
-    id: 'part-ec145-001-003',
-    name: 'Caixa de Transmissão Principal EC145 (Reforçada)',
-    serialNumber: 'GBX-EC145-HBS',
-    aircraftId: 'ac-007',
-    category: 'Transmissão',
-    installDate: new Date('2018-07-15'),
-    maxLifespanDays: 5110,
-    currentFlightHours: 3750,
-    maxFlightHoursTBO: 4200,
-    status: 'OK',
-    createdAt: new Date('2018-07-15'),
-    updatedAt: new Date('2024-08-04'),
-  },
-
-  // AC-008: EC145 C2 - 02 (PT-HBT)
-  {
-    id: 'part-ec145-002-001',
-    name: 'Motor Turbomeca Arriel 1P2 (Port)',
-    serialNumber: 'ARR-1P2-L-HBT',
-    aircraftId: 'ac-008',
-    category: 'Motor',
-    installDate: new Date('2020-11-20'),
-    maxLifespanDays: 3650,
-    currentFlightHours: 2750,
-    maxFlightHoursTBO: 3000,
-    status: 'WARNING',
-    createdAt: new Date('2020-11-20'),
-    updatedAt: new Date('2024-08-04'),
-  },
-  {
-    id: 'part-ec145-002-002',
-    name: 'Motor Turbomeca Arriel 1P2 (Starboard)',
-    serialNumber: 'ARR-1P2-R-HBT',
-    aircraftId: 'ac-008',
-    category: 'Motor',
-    installDate: new Date('2020-11-20'),
-    maxLifespanDays: 3650,
-    currentFlightHours: 2680,
-    maxFlightHoursTBO: 3000,
-    status: 'OK',
-    createdAt: new Date('2020-11-20'),
-    updatedAt: new Date('2024-08-04'),
-  },
-
-  // AC-009: EC145 C2 - 03 (PT-HBU)
-  {
-    id: 'part-ec145-003-001',
-    name: 'Motor Turbomeca Arriel 1P2 (Port)',
-    serialNumber: 'ARR-1P2-L-HBU',
-    aircraftId: 'ac-009',
-    category: 'Motor',
-    installDate: new Date('2022-09-08'),
-    maxLifespanDays: 3650,
-    currentFlightHours: 1950,
-    maxFlightHoursTBO: 3000,
-    status: 'OK',
-    createdAt: new Date('2022-09-08'),
-    updatedAt: new Date('2024-08-04'),
-  },
-  {
-    id: 'part-ec145-003-002',
-    name: 'Motor Turbomeca Arriel 1P2 (Starboard)',
-    serialNumber: 'ARR-1P2-R-HBU',
-    aircraftId: 'ac-009',
-    category: 'Motor',
-    installDate: new Date('2022-09-08'),
-    maxLifespanDays: 3650,
-    currentFlightHours: 1920,
-    maxFlightHoursTBO: 3000,
-    status: 'OK',
-    createdAt: new Date('2022-09-08'),
-    updatedAt: new Date('2024-08-04'),
-  },
-  {
-    id: 'part-ec145-003-003',
-    name: 'Alternador Duplo 28V',
-    serialNumber: 'ALT-28V-DUP-HBU',
-    aircraftId: 'ac-009',
-    category: 'Elétrico',
-    installDate: new Date('2022-12-01'),
-    maxLifespanDays: 3650,
-    currentFlightHours: 1250,
-    maxFlightHoursTBO: 3000,
-    status: 'OK',
-    createdAt: new Date('2022-12-01'),
-    updatedAt: new Date('2024-08-04'),
-  },
-];
+export const INITIAL_PARTS_MOCK: HelicopterPart[] = generatePartsFromComponents();
