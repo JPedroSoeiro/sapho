@@ -27,6 +27,11 @@ export default function InventoryDetailPage() {
   const [partToDelete, setPartToDelete] = useState<HelicopterPart | undefined>();
   const [searchQuery, setSearchQuery] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const aircraft = getAircraftById(aircraftId);
   const aircraftParts = parts.filter((p) => p.aircraftId === aircraftId);
@@ -77,6 +82,10 @@ export default function InventoryDetailPage() {
       setIsSubmitting(false);
     }
   };
+
+  if (!mounted) {
+    return null;
+  }
 
   if (!aircraft) {
     return (

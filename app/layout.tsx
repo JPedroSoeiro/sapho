@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { PartProvider } from "@/contexts/PartContext";
 import { AircraftProvider } from "@/contexts/AircraftContext";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { Header } from "@/components/layout/Header";
 import { TabNavigation } from "@/components/layout/TabNavigation";
 
@@ -28,13 +29,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
-        <AircraftProvider>
-          <PartProvider>
-            <Header />
-            <TabNavigation />
-            <main className="flex-1">{children}</main>
-          </PartProvider>
-        </AircraftProvider>
+        <ErrorBoundary>
+          <AircraftProvider>
+            <PartProvider>
+              <Header />
+              <TabNavigation />
+              <main className="flex-1">{children}</main>
+            </PartProvider>
+          </AircraftProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );
