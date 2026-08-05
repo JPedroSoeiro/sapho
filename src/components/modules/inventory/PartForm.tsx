@@ -46,6 +46,7 @@ export function PartForm({ part, aircraftId = '', onSubmit, loading = false }: P
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
 
+    if (!formData.aircraftId) newErrors.aircraftId = 'Aeronave é obrigatória';
     if (!formData.name.trim()) newErrors.name = 'Nome é obrigatório';
     if (!formData.serialNumber.trim()) newErrors.serialNumber = 'Serial Number é obrigatório';
     if (!formData.category.trim()) newErrors.category = 'Categoria é obrigatória';

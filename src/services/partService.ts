@@ -2,7 +2,7 @@ import { HelicopterPart, PartStatus } from '@/types/part';
 import { INITIAL_PARTS_MOCK } from '@/data/initialPartsMock';
 
 let partsCache = [...INITIAL_PARTS_MOCK];
-let nextId = 36;
+let nextId = INITIAL_PARTS_MOCK.length + 1;
 
 export const partService = {
   // GET - Obter todas as peças
@@ -28,7 +28,7 @@ export const partService = {
       setTimeout(() => {
         const newPart: HelicopterPart = {
           ...partData,
-          id: String(nextId++),
+          id: `part-${String(nextId++).padStart(3, '0')}`,
           createdAt: new Date(),
           updatedAt: new Date(),
         };
@@ -90,6 +90,6 @@ export const partService = {
   // Resetar dados para testes
   async reset(): Promise<void> {
     partsCache = [...INITIAL_PARTS_MOCK];
-    nextId = 36;
+    nextId = INITIAL_PARTS_MOCK.length + 1;
   },
 };

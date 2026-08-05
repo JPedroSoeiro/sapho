@@ -64,14 +64,17 @@ export default function InventoryDetailPage() {
   };
 
   const handleConfirmDelete = async () => {
-    if (partToDelete) {
-      try {
+    setIsSubmitting(true);
+    try {
+      if (partToDelete) {
         await deletePart(partToDelete.id);
         setIsDeleteModalOpen(false);
         setPartToDelete(undefined);
-      } catch (error) {
-        console.error('Erro ao deletar peça:', error);
       }
+    } catch (error) {
+      console.error('Erro ao deletar peça:', error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
