@@ -113,7 +113,11 @@ export function PartForm({ part, aircraftId = '', onSubmit, loading = false }: P
       {/* Linha 1: Nome e Serial Number */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
+          <label htmlFor="name" className="block text-xs font-medium text-gray-300 dark:text-gray-400 mb-1.5">
+            Nome da Peça
+          </label>
           <input
+            id="name"
             type="text"
             name="name"
             value={formData.name}
@@ -125,7 +129,11 @@ export function PartForm({ part, aircraftId = '', onSubmit, loading = false }: P
         </div>
 
         <div>
+          <label htmlFor="serialNumber" className="block text-xs font-medium text-gray-300 dark:text-gray-400 mb-1.5">
+            Serial Number
+          </label>
           <input
+            id="serialNumber"
             type="text"
             name="serialNumber"
             value={formData.serialNumber}
@@ -140,7 +148,11 @@ export function PartForm({ part, aircraftId = '', onSubmit, loading = false }: P
       {/* Linha 2: Categoria e Data */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
+          <label htmlFor="category" className="block text-xs font-medium text-gray-300 dark:text-gray-400 mb-1.5">
+            Categoria
+          </label>
           <input
+            id="category"
             type="text"
             name="category"
             value={formData.category}
@@ -152,7 +164,11 @@ export function PartForm({ part, aircraftId = '', onSubmit, loading = false }: P
         </div>
 
         <div>
+          <label htmlFor="installDate" className="block text-xs font-medium text-gray-300 dark:text-gray-400 mb-1.5">
+            Data de Instalação
+          </label>
           <input
+            id="installDate"
             type="date"
             name="installDate"
             value={installDateValue}
@@ -165,7 +181,11 @@ export function PartForm({ part, aircraftId = '', onSubmit, loading = false }: P
       {/* Linha 3: Dias de Vida e Horas Atuais */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
+          <label htmlFor="maxLifespanDays" className="block text-xs font-medium text-gray-300 dark:text-gray-400 mb-1.5">
+            Dias de Vida Útil (máx.)
+          </label>
           <input
+            id="maxLifespanDays"
             type="number"
             name="maxLifespanDays"
             value={formData.maxLifespanDays}
@@ -177,7 +197,11 @@ export function PartForm({ part, aircraftId = '', onSubmit, loading = false }: P
         </div>
 
         <div>
+          <label htmlFor="currentFlightHours" className="block text-xs font-medium text-gray-300 dark:text-gray-400 mb-1.5">
+            Horas de Voo Atuais
+          </label>
           <input
+            id="currentFlightHours"
             type="number"
             name="currentFlightHours"
             value={formData.currentFlightHours}
@@ -192,7 +216,11 @@ export function PartForm({ part, aircraftId = '', onSubmit, loading = false }: P
       {/* Linha 4: TBO */}
       <div className="grid grid-cols-1 gap-4">
         <div>
+          <label htmlFor="maxFlightHoursTBO" className="block text-xs font-medium text-gray-300 dark:text-gray-400 mb-1.5">
+            TBO - Horas Máximas
+          </label>
           <input
+            id="maxFlightHoursTBO"
             type="number"
             name="maxFlightHoursTBO"
             value={formData.maxFlightHoursTBO}
@@ -206,7 +234,11 @@ export function PartForm({ part, aircraftId = '', onSubmit, loading = false }: P
 
       {/* Linha 5: Status */}
       <div className="grid grid-cols-1 gap-4">
+        <label htmlFor="status" className="block text-xs font-medium text-gray-300 dark:text-gray-400 mb-1.5">
+          Status
+        </label>
         <select
+          id="status"
           name="status"
           value={formData.status}
           onChange={handleChange}
