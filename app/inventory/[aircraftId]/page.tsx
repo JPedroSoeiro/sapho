@@ -6,12 +6,12 @@ import { useParts } from '@/hooks/useParts';
 import { useAircraft } from '@/contexts/AircraftContext';
 import { HelicopterPart } from '@/types/part';
 import { Button } from '@/components/ui/Button';
-import { Modal } from '@/components/ui/Modal';
 import { Container } from '@/components/layout/Container';
 import { InventoryTable } from '@/components/modules/inventory/InventoryTable';
-import { PartForm } from '@/components/modules/inventory/PartForm';
+import { PartModal } from '@/components/modules/inventory/PartModal';
+import { DeletePartModal } from '@/components/modules/inventory/DeletePartModal';
 import { Input } from '@/components/ui/Input';
-import { Plus, Search, Trash2, ChevronLeft } from 'lucide-react';
+import { Plus, Search, ChevronLeft } from 'lucide-react';
 
 export default function InventoryDetailPage() {
   const params = useParams();
@@ -144,47 +144,22 @@ export default function InventoryDetailPage() {
         />
       </div>
 
-      <Modal
+      <PartModal
         isOpen={isFormModalOpen}
+        part={selectedPart}
+        aircraftId={aircraftId}
+        loading={isSubmitting}
+        onSubmit={handleFormSubmit}
         onClose={handleCloseForm}
-        title={selectedPart ? 'Editar Peça' : 'Cadastrar Nova Peça'}
-        size="lg"
-      >
-        <PartForm part={selectedPart} aircraftId={aircraftId} onSubmit={handleFormSubmit} loading={isSubmitting} />
-      </Modal>
+      />
 
-      <Modal
+      <DeletePartModal
         isOpen={isDeleteModalOpen}
-        onClose={() => setIsDeleteModalOpen(false)}
-        title="Confirmar Exclusão"
-        actions={
-          <div className="flex gap-2">
-            <Button variant="secondary" onClick={() => setIsDeleteModalOpen(false)}>
-              Cancelar
-            </Button>
-            <Button variant="danger" onClick={handleConfirmDelete}>
-              Deletar
-            </Button>
-          </div>
-        }
-      >
-        <div className="space-y-4">
-          <div className="flex items-start gap-3">
-            <Trash2 className="text-red-500 mt-1 flex-shrink-0" size={20} />
-            <div>
-              <p className="font-medium text-gray-900 dark:text-white">
-                Tem certeza que deseja deletar esta peça?
-              </p>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                <strong>{partToDelete?.name}</strong> ({partToDelete?.serialNumber})
-              </p>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-                Esta ação não pode ser desfeita.
-              </p>
-            </div>
-          </div>
-        </div>
-      </Modal>
+        part={partToDelete}
+        loading={isSubmitting}
+        onConfirm={handleConfirmDelete}
+        onCancel={() => setIsDeleteModalOpen(false)}
+      />
     </Container>
   );
 }

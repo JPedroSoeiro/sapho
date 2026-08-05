@@ -64,17 +64,19 @@ export function PartForm({ part, aircraftId = '', onSubmit, loading = false }: P
 
     try {
       await onSubmit(formData);
-      setFormData({
-        aircraftId,
-        name: '',
-        serialNumber: '',
-        category: '',
-        installDate: new Date(),
-        maxLifespanDays: 3650,
-        currentFlightHours: 0,
-        maxFlightHoursTBO: 5000,
-        status: 'OK',
-      });
+      if (!part) {
+        setFormData({
+          aircraftId,
+          name: '',
+          serialNumber: '',
+          category: '',
+          installDate: new Date(),
+          maxLifespanDays: 3650,
+          currentFlightHours: 0,
+          maxFlightHoursTBO: 5000,
+          status: 'OK',
+        });
+      }
       setErrors({});
     } catch (error) {
       console.error('Erro ao submeter formulário:', error);
@@ -106,100 +108,119 @@ export function PartForm({ part, aircraftId = '', onSubmit, loading = false }: P
     : '';
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Linha 1: Nome e Serial Number */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Input
-          label="Nome da Peça"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          error={errors.name}
-          placeholder="Ex: Rotor Principal"
-          required
-        />
-
-        <Input
-          label="Serial Number"
-          name="serialNumber"
-          value={formData.serialNumber}
-          onChange={handleChange}
-          error={errors.serialNumber}
-          placeholder="Ex: RMB-2024-001"
-          required
-        />
-
-        <Input
-          label="Categoria"
-          name="category"
-          value={formData.category}
-          onChange={handleChange}
-          error={errors.category}
-          placeholder="Ex: Rotores"
-          required
-        />
-
-        <Input
-          label="Data de Instalação"
-          name="installDate"
-          type="date"
-          value={installDateValue}
-          onChange={handleChange}
-          required
-        />
-
-        <Input
-          label="Dias de Vida Útil (Calendário)"
-          name="maxLifespanDays"
-          type="number"
-          value={formData.maxLifespanDays}
-          onChange={handleChange}
-          error={errors.maxLifespanDays}
-          placeholder="Ex: 3650"
-          required
-        />
-
-        <Input
-          label="Horas de Voo Atuais"
-          name="currentFlightHours"
-          type="number"
-          value={formData.currentFlightHours}
-          onChange={handleChange}
-          error={errors.currentFlightHours}
-          placeholder="Ex: 2500"
-          required
-        />
-
-        <Input
-          label="TBO - Horas de Voo Máximas"
-          name="maxFlightHoursTBO"
-          type="number"
-          value={formData.maxFlightHoursTBO}
-          onChange={handleChange}
-          error={errors.maxFlightHoursTBO}
-          placeholder="Ex: 5000"
-          required
-        />
+        <div>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Nome da Peça"
+            className="w-full px-4 py-3 bg-gray-700 dark:bg-gray-600 border border-gray-600 dark:border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+          {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
+        </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Status
-          </label>
-          <select
-            name="status"
-            value={formData.status}
+          <input
+            type="text"
+            name="serialNumber"
+            value={formData.serialNumber}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="OK">OK</option>
-            <option value="WARNING">Alerta</option>
-            <option value="CRITICAL_AOG">Crítico (AOG)</option>
-          </select>
+            placeholder="Serial Number"
+            className="w-full px-4 py-3 bg-gray-700 dark:bg-gray-600 border border-gray-600 dark:border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+          {errors.serialNumber && <p className="text-red-500 text-xs mt-1">{errors.serialNumber}</p>}
         </div>
       </div>
 
-      <div className="flex gap-3 pt-4">
+      {/* Linha 2: Categoria e Data */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <input
+            type="text"
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            placeholder="Categoria"
+            className="w-full px-4 py-3 bg-gray-700 dark:bg-gray-600 border border-gray-600 dark:border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+          {errors.category && <p className="text-red-500 text-xs mt-1">{errors.category}</p>}
+        </div>
+
+        <div>
+          <input
+            type="date"
+            name="installDate"
+            value={installDateValue}
+            onChange={handleChange}
+            className="w-full px-4 py-3 bg-gray-700 dark:bg-gray-600 border border-gray-600 dark:border-gray-500 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+      </div>
+
+      {/* Linha 3: Dias de Vida e Horas Atuais */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <input
+            type="number"
+            name="maxLifespanDays"
+            value={formData.maxLifespanDays}
+            onChange={handleChange}
+            placeholder="Dias de Vida Útil"
+            className="w-full px-4 py-3 bg-gray-700 dark:bg-gray-600 border border-gray-600 dark:border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+          {errors.maxLifespanDays && <p className="text-red-500 text-xs mt-1">{errors.maxLifespanDays}</p>}
+        </div>
+
+        <div>
+          <input
+            type="number"
+            name="currentFlightHours"
+            value={formData.currentFlightHours}
+            onChange={handleChange}
+            placeholder="Horas de Voo Atuais"
+            className="w-full px-4 py-3 bg-gray-700 dark:bg-gray-600 border border-gray-600 dark:border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+          {errors.currentFlightHours && <p className="text-red-500 text-xs mt-1">{errors.currentFlightHours}</p>}
+        </div>
+      </div>
+
+      {/* Linha 4: TBO */}
+      <div className="grid grid-cols-1 gap-4">
+        <div>
+          <input
+            type="number"
+            name="maxFlightHoursTBO"
+            value={formData.maxFlightHoursTBO}
+            onChange={handleChange}
+            placeholder="TBO - Horas Máximas"
+            className="w-full px-4 py-3 bg-gray-700 dark:bg-gray-600 border border-gray-600 dark:border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+          {errors.maxFlightHoursTBO && <p className="text-red-500 text-xs mt-1">{errors.maxFlightHoursTBO}</p>}
+        </div>
+      </div>
+
+      {/* Linha 5: Status */}
+      <div className="grid grid-cols-1 gap-4">
+        <select
+          name="status"
+          value={formData.status}
+          onChange={handleChange}
+          className="w-full px-4 py-3 bg-gray-700 dark:bg-gray-600 border border-gray-600 dark:border-gray-500 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        >
+          <option value="OK">Status: OK</option>
+          <option value="WARNING">Status: Alerta</option>
+          <option value="CRITICAL_AOG">Status: Crítico (AOG)</option>
+        </select>
+      </div>
+
+      {/* Botões */}
+      <div className="flex gap-3 pt-6 border-t border-gray-600 dark:border-gray-500">
         <Button type="submit" variant="primary" isLoading={loading}>
-          {part ? 'Atualizar Peça' : 'Adicionar Peça'}
+          {part ? 'Atualizar Peça' : 'Salvar Peça'}
         </Button>
       </div>
     </form>
