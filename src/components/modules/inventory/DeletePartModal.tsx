@@ -66,7 +66,7 @@ export function DeletePartModal({
           </Button>
           <Button
             variant="danger"
-            onClick={onConfirm}
+            onClick={() => console.log('Delete disabled')}
             isLoading={loading}
           >
             Deletar Peça
