@@ -4,7 +4,6 @@ import React from 'react';
 import Link from 'next/link';
 import { Aircraft } from '@/types/aircraft';
 import { formatDate } from '@/utils/formatters';
-import { activity } from 'lucide-react';
 
 interface AircraftSelectorProps {
   aircraft: Aircraft[];

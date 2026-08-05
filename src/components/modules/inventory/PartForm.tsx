@@ -7,12 +7,14 @@ import { Button } from '@/components/ui/Button';
 
 interface PartFormProps {
   part?: HelicopterPart;
+  aircraftId?: string;
   onSubmit: (partData: Omit<HelicopterPart, 'id' | 'createdAt' | 'updatedAt'>) => Promise<void>;
   loading?: boolean;
 }
 
-export function PartForm({ part, onSubmit, loading = false }: PartFormProps) {
+export function PartForm({ part, aircraftId = '', onSubmit, loading = false }: PartFormProps) {
   const [formData, setFormData] = useState<Omit<HelicopterPart, 'id' | 'createdAt' | 'updatedAt'>>({
+    aircraftId: part?.aircraftId || aircraftId,
     name: '',
     serialNumber: '',
     category: '',
@@ -28,6 +30,7 @@ export function PartForm({ part, onSubmit, loading = false }: PartFormProps) {
   useEffect(() => {
     if (part) {
       setFormData({
+        aircraftId: part.aircraftId,
         name: part.name,
         serialNumber: part.serialNumber,
         category: part.category,
@@ -62,6 +65,7 @@ export function PartForm({ part, onSubmit, loading = false }: PartFormProps) {
     try {
       await onSubmit(formData);
       setFormData({
+        aircraftId,
         name: '',
         serialNumber: '',
         category: '',

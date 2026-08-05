@@ -150,7 +150,7 @@ export default function InventoryDetailPage() {
         title={selectedPart ? 'Editar Peça' : 'Cadastrar Nova Peça'}
         size="lg"
       >
-        <PartForm part={selectedPart} onSubmit={handleFormSubmit} loading={isSubmitting} />
+        <PartForm part={selectedPart} aircraftId={aircraftId} onSubmit={handleFormSubmit} loading={isSubmitting} />
       </Modal>
 
       <Modal
