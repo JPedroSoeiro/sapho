@@ -19,6 +19,8 @@ export interface HelicopterPart {
   currentFlightHours: number;
   maxFlightHoursTBO: number;
   status: PartStatus;
+  /** Multiplicador de desgaste por hora de voo (padrão 1.0 quando ausente). Ver src/utils/wearFactor.ts */
+  wearFactor?: number;
   createdAt: Date;
   updatedAt: Date;
   maintenanceHistory?: MaintenanceHistory[];

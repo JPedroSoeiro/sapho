@@ -1,5 +1,5 @@
 import { HelicopterPart, PartStatus } from '@/types/part';
-import { INITIAL_PARTS_MOCK } from '@/data/initialPartsMock';
+import { INITIAL_PARTS_MOCK } from '@/lib/mock/initialPartsMock';
 
 let partsCache = [...INITIAL_PARTS_MOCK];
 let nextId = INITIAL_PARTS_MOCK.length + 1;
@@ -84,6 +84,40 @@ export const partService = {
       setTimeout(() => {
         resolve(partsCache.filter((p) => p.category.toLowerCase() === category.toLowerCase()));
       }, 200);
+    });
+  },
+
+  // Filtrar por aeronave
+  async getByAircraft(aircraftId: string): Promise<HelicopterPart[]> {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(partsCache.filter((p) => p.aircraftId === aircraftId).map((p) => ({ ...p })));
+      }, 150);
+    });
+  },
+
+  // Atualização em lote (usado pelo motor de desgaste de missões)
+  async bulkUpdate(
+    updates: Array<{ id: string; data: Partial<Omit<HelicopterPart, 'id' | 'createdAt'>> }>
+  ): Promise<HelicopterPart[]> {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const updated: HelicopterPart[] = [];
+
+        for (const { id, data } of updates) {
+          const index = partsCache.findIndex((p) => p.id === id);
+          if (index === -1) continue;
+
+          partsCache[index] = {
+            ...partsCache[index],
+            ...data,
+            updatedAt: new Date(),
+          };
+          updated.push({ ...partsCache[index] });
+        }
+
+        resolve(updated);
+      }, 300);
     });
   },
 

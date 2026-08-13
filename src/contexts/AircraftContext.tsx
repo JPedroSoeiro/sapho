@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext } from 'react';
 import { Aircraft } from '@/types/aircraft';
-import { INITIAL_AIRCRAFT_MOCK } from '@/data/initialAircraftMock';
+import { INITIAL_AIRCRAFT_MOCK } from '@/lib/mock/initialAircraftMock';
 
 interface AircraftContextType {
   aircraft: Aircraft[];

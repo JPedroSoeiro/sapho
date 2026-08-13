@@ -4,6 +4,7 @@ import React from 'react';
 import { HelicopterPart } from '@/types/part';
 import { Modal } from '@/components/ui/Modal';
 import { PartForm } from './PartForm';
+import { PartWearHistory } from './PartWearHistory';
 
 interface PartModalProps {
   isOpen: boolean;
@@ -45,6 +46,8 @@ export function PartModal({
             💡 <span className="font-semibold">Dica:</span> Preencha todos os campos corretamente. Os valores de TBO e horas de voo são usados para calcular automaticamente o status da peça.
           </p>
         </div>
+
+        {isEditing && <PartWearHistory partId={part.id} />}
 
         <PartForm
           part={part}

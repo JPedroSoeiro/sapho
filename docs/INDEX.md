@@ -8,7 +8,7 @@
 
 | Arquivo | Descrição | Tempo de Leitura |
 |---------|-----------|------------------|
-| [README.md](./README.md) | Guia geral do projeto | 5 min |
+| [README.md](../README.md) | Guia geral do projeto | 5 min |
 | [IMPLEMENTATION_SUMMARY.md](./IMPLEMENTATION_SUMMARY.md) | Resumo executivo | 10 min |
 | [SAPHO_ARCHITECTURE.md](./SAPHO_ARCHITECTURE.md) | Arquitetura técnica completa | 20 min |
 | [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md) | Estrutura visual de pastas | 10 min |
@@ -515,4 +515,4 @@ João Pedro Soeiro Lemos | 2026-08-04 | v0.1.0
 
 ---
 
-**[Voltar ao README.md](./README.md)**
+**[Voltar ao README.md](../README.md)**

@@ -330,7 +330,7 @@ Estrutura geral (5+ anos):         4000-5200h
 ## 📖 Documentação Relacionada
 
 - **[MOCK_DATA_DOCUMENTATION.md](./MOCK_DATA_DOCUMENTATION.md)** - Documentação detalhada
-- **[README.md](./README.md)** - Guia geral
+- **[README.md](../README.md)** - Guia geral
 - **[SAPHO_ARCHITECTURE.md](./SAPHO_ARCHITECTURE.md)** - Arquitetura técnica
 
 ---

@@ -208,7 +208,7 @@ src/
 ## 📚 Documentacao
 
 - **[SAPHO_ARCHITECTURE.md](./SAPHO_ARCHITECTURE.md)** - Arquitetura detalhada
-- **[README.md](./README.md)** - Guia de uso
+- **[README.md](../README.md)** - Guia de uso
 - **[SETUP_COMPLETE.md](./SETUP_COMPLETE.md)** - Este arquivo
 
 ---

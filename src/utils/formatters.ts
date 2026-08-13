@@ -29,3 +29,10 @@ export function formatFlightHours(hours: number): string {
 export function formatDays(days: number): string {
   return `${days}d`;
 }
+
+export function formatDurationHHMM(hours: number): string {
+  const totalMinutes = Math.round(hours * 60);
+  const h = Math.floor(totalMinutes / 60);
+  const m = totalMinutes % 60;
+  return `${h}h${m.toString().padStart(2, '0')}`;
+}

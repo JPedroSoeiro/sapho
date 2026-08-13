@@ -476,7 +476,7 @@ console.error('Erro:', error)
 
 5. **Consultar documentação**
    - [SAPHO_ARCHITECTURE.md](./SAPHO_ARCHITECTURE.md)
-   - [README.md](./README.md)
+   - [README.md](../README.md)
 
 ---
 

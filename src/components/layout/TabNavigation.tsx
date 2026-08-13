@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Activity, Package } from 'lucide-react';
+import { Activity, Package, Plane } from 'lucide-react';
 import clsx from 'clsx';
 
 export function TabNavigation() {
@@ -12,7 +12,7 @@ export function TabNavigation() {
   const tabs = [
     {
       name: 'Monitoramento',
-      href: '/',
+      href: '/monitoring',
       icon: Activity,
       description: 'Vida útil e desgaste',
     },
@@ -22,6 +22,12 @@ export function TabNavigation() {
       icon: Package,
       description: 'Gestão de peças',
     },
+    {
+      name: 'Missões',
+      href: '/missions',
+      icon: Plane,
+      description: 'Registro de voos',
+    },
   ];
 
   return (
@@ -30,7 +36,7 @@ export function TabNavigation() {
         <div className="flex gap-8">
           {tabs.map((tab) => {
             const Icon = tab.icon;
-            const isActive = pathname === tab.href;
+            const isActive = pathname === tab.href || pathname.startsWith(`${tab.href}/`);
 
             return (
               <Link
